@@ -6,12 +6,16 @@ name: Build and deploy Node.js app to Azure Web App - Frontend-2022
 on:
   push:
     branches:
-      - feature/github.action
+      - main
+      - feature/*
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: windows-latest
+    default:
+      run:
+        working-directory: "./frontend"
 
     steps:
       - uses: actions/checkout@v2
@@ -53,4 +57,4 @@ jobs:
           app-name: 'Frontend-2022'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_8B6C0372408E4D84B5DAF8E12951E4FA }}
-          package: .
+          package: "./frontend/build"
