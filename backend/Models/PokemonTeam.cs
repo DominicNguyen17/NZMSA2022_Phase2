@@ -6,7 +6,9 @@ namespace backend.Models
     {
         public DateTime Created { get; set; }
         [Required]
-        public String Name { get; set; }
+        public String TeamName { get; set; }
+        public String PokemonName { get; set; }
         public int ID { get; set; }
+
     }
 }

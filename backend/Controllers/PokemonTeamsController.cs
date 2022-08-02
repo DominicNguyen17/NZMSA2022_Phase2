@@ -16,7 +16,11 @@ namespace backend.Controllers
             _context = context;
         }
 
-        // GET: api/PokemonTeams
+
+        /// <summary>
+        /// Gets all pokemons added to team.
+        /// </summary>
+        /// <returns>All the pokemons in team</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PokemonTeam>>> GetTeam()
         {
@@ -27,7 +31,10 @@ namespace backend.Controllers
             return await _context.Team.ToListAsync();
         }
 
-        // GET: api/PokemonTeams/5
+        /// <summary>
+        /// Gets a pokemon added to team by ID.
+        /// </summary>
+        /// <returns>A pokemons in team which is chosen by ID</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<PokemonTeam>> GetPokemonTeam(int id)
         {
@@ -45,7 +52,10 @@ namespace backend.Controllers
             return pokemonTeam;
         }
 
-        // PUT: api/PokemonTeams/5
+        /// <summary>
+        /// Update pokemon information by ID.
+        /// </summary>
+        /// <returns>A updated pokemons in team which is chosen by ID</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPokemonTeam(int id, PokemonTeam pokemonTeam)
         {
@@ -75,21 +85,22 @@ namespace backend.Controllers
             return NoContent();
         }
 
-        // POST: api/PokemonTeams
+        /// <summary>
+        /// Add new pokemon into team.
+        /// </summary>
+        /// <returns>Pokemon in team</returns>
         [HttpPost]
         public async Task<ActionResult<PokemonTeam>> PostPokemonTeam(PokemonTeam pokemonTeam)
         {
-          if (_context.Team == null)
-          {
-              return Problem("Entity set 'PokemonTeamDbContext.Team'  is null.");
-          }
             _context.Team.Add(pokemonTeam);
             await _context.SaveChangesAsync();
-
             return CreatedAtAction("GetPokemonTeam", new { id = pokemonTeam.ID }, pokemonTeam);
         }
 
-        // DELETE: api/PokemonTeams/5
+        /// <summary>
+        /// Delete a pokemon by ID.
+        /// </summary>
+        /// <returns>Last pokemon in team</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePokemonTeam(int id)
         {
