@@ -30,12 +30,11 @@ namespace backend.Controllers
         /// <returns>A JSON object representingpokemon infomation in PokeApi</returns>
         [HttpGet]
         [ProducesResponseType(200)]
-        public async Task<IActionResult> GetAPokemon(int day, int month, int year)
+        public async Task<PokemonTeam> GetAPokemon(int day, int month, int year)
         {
             var id = new Random().Next(1,1154);
-            var res = await _client.GetAsync(String.Format("{0}", id));
-            var content = await res.Content.ReadAsStringAsync();
-            return Ok(content);
+            PokemonTeam res = await _client.GetFromJsonAsync<PokemonTeam>($"{id}");
+            return res;
         }
     }
 }

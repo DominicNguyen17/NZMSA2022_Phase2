@@ -1,13 +1,8 @@
 using NUnit.Framework;
 namespace WebApiTest
 {
-    public class Tests
+    public class UnitTest1
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
-
         [Test]
         public void Test1()
         {
