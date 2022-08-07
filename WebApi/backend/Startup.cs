@@ -1,6 +1,8 @@
-﻿using backend.Data;
+﻿using backend.Model;
+using backend.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+
 
 namespace backend
 {
@@ -27,13 +29,17 @@ namespace backend
                 });
 
             });
-            services.AddDbContext<PokemonTeamDbContext>(opt =>
-                opt.UseInMemoryDatabase("PokemonTeam"));
+
+            var connection = Configuration.GetConnectionString("NZMSA2022_PokemonContext");
+            services.AddDbContext<NZMSA2022_PokemonContext>(options => options.UseSqlServer(connection));
 
             services.AddHttpClient(Configuration["PokeApiClientName"], configureClient: client =>
             {
                 client.BaseAddress = new Uri(Configuration["PokeApiAddress"]);
             });
+
+            services.AddScoped<IPokemonServices, PokemonServices>();
+            services.AddScoped<IUserServices, UserServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
