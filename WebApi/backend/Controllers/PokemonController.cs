@@ -15,9 +15,9 @@ namespace backend.Controllers
             _pokemonServices = pokemonServices;
         }
         /// <summary>
-        /// Gets the JSON for the pokemon infomation in PokeApi
+        /// Gets the pokemon infomation from PokeApi
         /// </summary>
-        /// <returns>A JSON object representingpokemon infomation in PokeApi</returns>
+        /// <returns>A pokemon infomation in PokeApi</returns>
         [HttpGet]
         [ProducesResponseType(200)]
         public async Task<Pokemon> GetAPokemon(int id)
