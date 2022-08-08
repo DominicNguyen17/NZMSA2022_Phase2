@@ -11,4 +11,10 @@ controllers to create the object and I can use in those controllers and in the f
 For example, I have created the UserSevices which implemented the interface IUserServices, and then I called the IUserServices to create
 the object and I passed that object to the UsersController class through the constructor. That is called dependency injection.
 
+## NUnit Test:
+- I have create the expected user with the same value with the actual user and I create the controller to get user by Id from database. The test case is comparing
+the actual user's name and the expected user's name. If those are same, the test case is passed, otherwise, it is failed.
+
 ## Middleware Libraries:
+- Middleware is components of an application that handle requests and responses. The middleware is a pipeline that will make the code more readable and easier to maintain.
+Because of that, the middleware make easier to find the bugs and easily fix that.
